@@ -103,5 +103,7 @@ theme: hexo-theme-next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/iiheng/iiheng.github.io
-  branch: master
+  repo: 
+    github: https://github.com/iiheng/iiheng.github.io.git,master
+    coding: https://e.coding.net/iiheng/noteblog/noteblog.git,master
+  

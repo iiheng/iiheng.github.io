@@ -1,13 +1,13 @@
-# Hexo Configuration
+ï»¿# Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Òãºã-¸öÈË²©¿Í
-subtitle: ±Ê¼Ç²©¿Í
-description: ¼ÇÂ¼¸öÈËËùÑ§£¬¼ÆËã»ú
+title: æ¯…æ’-ä¸ªäººåšå®¢
+subtitle: ç¬”è®°åšå®¢
+description: è®°å½•ä¸ªäººæ‰€å­¦ï¼Œè®¡ç®—æœº
 keywords: 
-author: 'ÍõÒãºã'
+author: 'ç‹æ¯…æ’'
 language: zh-CH
 timezone: Asia/Shanghai
 

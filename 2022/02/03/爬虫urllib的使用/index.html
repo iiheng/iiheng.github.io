@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"blog.iheng.xyz","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言 爬虫文章均来自《python3网络爬虫开发实战教程》，只为方便记录日 常所学，以及方便观看。 本章主要学习python爬虫的基本库，这些库基本已经实现了爬虫的一些功能，我们只要能够调用函数即可爬虫一些简单的页面。  urllib的使用首先介绍一个python库，叫做urllib库，利用它可以就可以实现HTTP请求的发送，而且不需要关心HTTP协议本身甚至更底层的实现，我们要做的是制定请求的u">
+  <meta name="description" content="前言 爬虫文章均来自《python3网络爬虫开发实战教程》，只为方便记录日常所学，以及方便观看。 本章主要学习python爬虫的基本库，这些库基本已经实现了爬虫的一些功能，我们只要能够调用函数即可爬虫一些简单的页面。  urllib的使用首先介绍一个python库，叫做urllib库，利用它可以就可以实现HTTP请求的发送，而且不需要关心HTTP协议本身甚至更底层的实现，我们要做的是制定请求的ur">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python爬虫基本库的使用">
 <meta property="og:url" content="http://blog.iheng.xyz/2022/02/03/%E7%88%AC%E8%99%ABurllib%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="毅恒-个人博客">
-<meta property="og:description" content="前言 爬虫文章均来自《python3网络爬虫开发实战教程》，只为方便记录日 常所学，以及方便观看。 本章主要学习python爬虫的基本库，这些库基本已经实现了爬虫的一些功能，我们只要能够调用函数即可爬虫一些简单的页面。  urllib的使用首先介绍一个python库，叫做urllib库，利用它可以就可以实现HTTP请求的发送，而且不需要关心HTTP协议本身甚至更底层的实现，我们要做的是制定请求的u">
+<meta property="og:description" content="前言 爬虫文章均来自《python3网络爬虫开发实战教程》，只为方便记录日常所学，以及方便观看。 本章主要学习python爬虫的基本库，这些库基本已经实现了爬虫的一些功能，我们只要能够调用函数即可爬虫一些简单的页面。  urllib的使用首先介绍一个python库，叫做urllib库，利用它可以就可以实现HTTP请求的发送，而且不需要关心HTTP协议本身甚至更底层的实现，我们要做的是制定请求的ur">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-02T16:02:41.000Z">
-<meta property="article:modified_time" content="2022-02-03T16:21:43.371Z">
+<meta property="article:modified_time" content="2022-02-07T10:21:44.102Z">
 <meta property="article:author" content="王毅恒">
 <meta property="article:tag" content="python爬虫基本库的使用">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-04 00:21:43" itemprop="dateModified" datetime="2022-02-04T00:21:43+08:00">2022-02-04</time>
+                <time title="修改时间：2022-02-07 18:21:44" itemprop="dateModified" datetime="2022-02-07T18:21:44+08:00">2022-02-07</time>
               </span>
 
           
@@ -269,15 +269,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
-<li>爬虫文章均来自<a target="_blank" rel="noopener" href="https://item.jd.com/12333540.html">《python3网络爬虫开发实战教程》</a>，只为方便记录日<br> 常所学，以及方便观看。</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>爬虫文章均来自<a target="_blank" rel="noopener" href="https://item.jd.com/12333540.html">《python3网络爬虫开发实战教程》</a>，只为方便记录日常所学，以及方便观看。</li>
 <li>本章主要学习python爬虫的基本库，这些库基本已经实现了爬虫的一些功能，我们只要能够调用函数即可爬虫一些简单的页面。</li>
 </ul>
 <h2 id="urllib的使用"><a href="#urllib的使用" class="headerlink" title="urllib的使用"></a>urllib的使用</h2><p>首先介绍一个python库，叫做urllib库，利用它可以就可以实现HTTP请求的发送，而且不需要<br>关心HTTP协议本身甚至更底层的实现，我们要做的是制定请求的url，请求头，请求体等信息。<br>此外urllib还可以吧服务器返回的响应转化为Python对象，我们通过该对象便更方便地获取响应的<br>相关信息，如响应状态码，响应头，响应体等。</p>
 <blockquote>
 <p>注意：在python2中，有urllib和urllib2两个库来实现HTTP请求的发送，而在Python3中，urllib2的库已经不存在了，统一为urllib。</p>
 </blockquote>
-<p>首先，我们了解一下urllib库的使用方法，它是Python内置的HTTP请求库，也就是说不需要额外的安装<br>，可直接使用。urllib库包含如下4个模块。</p>
+<p>首先，我们了解一下urllib库的使用方法，它是Python内置的HTTP请求库，也就是说不需要额外的安装，可直接使用。urllib库包含如下4个模块。</p>
 <ol>
 <li>request: 这是最基本的HTTP请求模块，可以模拟请求的发送。就像在浏览器里输入网址后然后按下回车一样，只需要给库方法传入URL以及额外的参数，就可以模拟实现发送请求的过程了。</li>
 <li>error: 异常处理模块。如果出现请求异常，那么我们可以捕获这些异常，然后进行重试或其他操作以保证程序运行不会意外中止。</li>
@@ -322,10 +322,9 @@
 [(&#39;Connection&#39;, &#39;close&#39;), (&#39;Content-Length&#39;, &#39;49696&#39;), (&#39;Server&#39;, &#39;nginx&#39;), (&#39;Content-Type&#39;, &#39;text/html; charset=utf-8&#39;), (&#39;X-Frame-Options&#39;, &#39;DENY&#39;), (&#39;Via&#39;, &#39;1.1 vegur, 1.1 varnish, 1.1 varnish&#39;), (&#39;Accept-Ranges&#39;, &#39;bytes&#39;), (&#39;Date&#39;, &#39;Thu, 03 Feb 2022 15:24:58 GMT&#39;), (&#39;Age&#39;, &#39;1123&#39;), (&#39;X-Served-By&#39;, &#39;cache-iad-kjyo7100026-IAD, cache-hkg17927-HKG&#39;), (&#39;X-Cache&#39;, &#39;HIT, HIT&#39;), (&#39;X-Cache-Hits&#39;, &#39;2, 2830&#39;), (&#39;X-Timer&#39;, &#39;S1643901899.635229,VS0,VE0&#39;), (&#39;Vary&#39;, &#39;Cookie&#39;), (&#39;Strict-Transport-Security&#39;, &#39;max-age=63072000; includeSubDomains&#39;)]
 nginx
 </code></pre>
-<p>其中前两个输出分别是响应的状态码和响应的头信息；最后一个输出是调用getheader方法，并传入<br>参数Server,获取了响应肉中Server的值，结果是nginx，意思为服务器是用Nainx搭建的。<br>利用最基本的urlopen方法，已经可以完成对简单网页的GET请求抓取。<br>如果想给连接传递一些阐述，又该怎么实现呢？首先看一下urlopen方法的api：</p>
-<blockquote>
-<p>urllib.request.urlopen(url,data=None,[timeout,]*,cafile=None,capath=None,cadefault=False,context=None)<br>可以发现，除了第一个阐述用于传递URL外，我们还可以传递其他内容，例如data（附加数据）、timeout（超时时间）等。<br>接下来就详细说明一下urlopen方法中几个阐述的用法</p>
-</blockquote>
+<p>其中前两个输出分别是响应的状态码和响应的头信息；最后一个输出是调用getheader方法，并传入参数Server,获取了响应肉中Server的值，结果是nginx，意思为服务器是用Nainx搭建的。<br>利用最基本的urlopen方法，已经可以完成对简单网页的GET请求抓取。<br>如果想给连接传递一些阐述，又该怎么实现呢？首先看一下urlopen方法的api：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.request.urlopen(url,data=None,[timeout,]*,cafile=None,capath=None,cadefault=False,context=None)</span><br></pre></td></tr></table></figure>
+<p>可以发现，除了第一个阐述用于传递URL外，我们还可以传递其他内容，例如data（附加数据）、timeout（超时时间）等。<br>接下来就详细说明一下urlopen方法中几个阐述的用法</p>
 <h4 id="data参数"><a href="#data参数" class="headerlink" title="data参数"></a>data参数</h4><p>data参数是可选的。在添加该参数时，需要是哦那个bytes方法将参数转化为字节流编码格式的内容，即bytes类型。另外，<br>如果传递了这个参数，那么它的请求方式就不再是GET，而是POST了。</p>
 <p>下面用实例来看一下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">data = bytes(urllib.parse.urlencode(&#123;&#x27;name&#x27;:&#x27;germey&#x27;&#125;),encoding=&#x27;utf-8&#x27;)</span><br><span class="line">response = urllib.request.urlopen(&#x27;http://www.httpbin.org/post&#x27;,data=data)</span><br><span class="line">print(response.read().decode(&#x27;utf-8&#x27;))</span><br></pre></td></tr></table></figure>
@@ -350,6 +349,306 @@ nginx
   &quot;json&quot;: null, 
   &quot;origin&quot;: &quot;39.181.204.56&quot;, 
   &quot;url&quot;: &quot;http://www.httpbin.org/post&quot;
+&#125;
+</code></pre>
+<p>可以发现我们传递的参数出现在了form字段中，这表明是模拟表单提交，以POST方式传输数据。</p>
+<h4 id="timeout参数"><a href="#timeout参数" class="headerlink" title="timeout参数"></a>timeout参数</h4><p>timeout参数用于设置超时时间，单位为秒，意思是如果请求超出了设置的这个时间，还没有得到响应，就会抛出异常。如果不指定该参数，则会使用全局默认时间。这个参数支持HTTP、HTTPS、FTP请求。</p>
+<p>下面用实例来看一下：、</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">response = urllib.request.urlopen(&#x27;https://www.httpbin.org/get&#x27;,timeout=0.1)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+<p>运行结果可能如下：</p>
+<pre><code>........
+  File &quot;C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\urllib\request.py&quot;, line 1389, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File &quot;C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.2800.0_x64__qbz5n2kfra8p0\lib\urllib\request.py&quot;, line 1349, in do_open
+    raise URLError(err)
+urllib.error.URLError: &lt;urlopen error timed out&gt;
+</code></pre>
+<p>这里我们设置超时时间为0.1秒。程序运行了0.1秒后，服务器依然没有响应，于是抛出了URLError异常。该异常属于urllib.error模块，错误原因是超时。</p>
+<p>因此可以通过设置这个超时时间，实现当一个页面长时间未响应时，就跳过对它的抓取。此外，利用try except语句也可以实现，相关代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from urllib import request,error</span><br><span class="line">import socket</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    response = request.urlopen(&#x27;https://httpbin.org&#x27;,timeout=0.1)</span><br><span class="line">except error.URLError as e:</span><br><span class="line">    if isinstance(e.reason,socket.timeout):</span><br><span class="line">        print(&#x27;TIME OUT&#x27;)</span><br></pre></td></tr></table></figure>
+<p>这里我们请求了<code>https://www.httpbin.org/get</code>这个测试链接，设置超时时间为0.1，然后捕获到URLError这个异常，并判断异常类型是socket.timeout,意思是超时异常，因此得出确实是因为超时而报错的结论，最后打印输出了TIME OUT。</p>
+<p>运行结果如下：</p>
+<pre><code>TIME OUT
+</code></pre>
+<p>按照常理来说，0.1秒几乎不可能得到服务器响应，因此输出了TIME OUT的提示。<br>通过设置timeout参数超时处理，有时还是很有用的。</p>
+<h4 id="其他参数"><a href="#其他参数" class="headerlink" title="其他参数"></a>其他参数</h4><p>除了data参数和timeout参数，urlopen方法还有context参数，该参数必须是ssl.SSLContext类型，用来指定SSL的设置。<br>此外，cafile和capath这两个参数分别用来指定CA证书和其路径，这两个在请求HTTPS链接是会有用。<br>cadefaule参数现在已经弃用，其默认值为False。<br>至此，我们讲解了urlopen方法的用法，通过这个最基本的方法，就可以完成简单的请求和页面抓取。</p>
+<h4 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h4><p>利用urlopen方法可以发起最基本的请求，但它那几个简单的参数并不足以构建一个完整的请求。如果需要往请求中加入Headers等信息，就得利用更强大的Requst类来构建请求了。</p>
+<p>首先，我们用实例感受一下Request类的用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">request = urllib.request.Request(&#x27;https://httpbin.org&#x27;)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">print(response.status,response.read().decode(&#x27;utf-8&#x27;),sep=&quot;\n&quot;)</span><br></pre></td></tr></table></figure>
+<p>可以发现，我么依然是用urlopen方法来发送请求，只不过这次该方法的参数不在是URL，而是一个Request类型的对象。通过构造这个数据结构某一方面可以将请求独立成一个对象，另一方面可更加丰富和灵活地配置参数。</p>
+<p>下面我们看一下可以通过怎样的参数来构造Request类，构造方法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class urllib.request.Request(url,data=None,headers=&#123;&#125;,origin_req_host=None,unverifiable=False,method=None)</span><br></pre></td></tr></table></figure>
+<p>第一个参数url用来请求URL，这是必传参数，其他的都是可选参数。</p>
+<p>第二个参数data如果要传数据，必须传bytes类型的，如果数据是字典，可以先用urllib.parse模块里的urlencode方法进行编码。</p>
+<p>第三个参数headers是一个字典，这就是请求头，我们在构造请求时，既可以通过header是参数直接构造此项，也可以通过调用请求实例的add_header方法添加。<br>添加请求头最常见的方法就是通过修改User-Agent来伪装浏览器。默认的User-Agent是Python-urllib,我们可以通过，修改这个值来伪装浏览器。</p>
+<p>第四个参数origin_req_host指的是请求方的host名称或者IP地址。</p>
+<p>第五个参数unverifiable表示请求是否是无法验证的，默认取值是False，意思是用户没有足够的权限来接受这个请求的结果。例如，请求一个HTML文档中的照片，但没有自动抓取图像的权限，这是unverifiable的值就是True.</p>
+<p>第六个参数method是一个字符串，用来指示请求使用的方法，例如GRT,POST,PUT等。</p>
+<p>下面我们传入多个参数尝试构建Requset类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from urllib import request,parse</span><br><span class="line"></span><br><span class="line">url = &#x27;https://www.httpbin.org/post&#x27;</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;:&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&#x27;,</span><br><span class="line">    &#x27;Host&#x27;:&#x27;www.httpbin.org&#x27;</span><br><span class="line">&#125;</span><br><span class="line">dict = &#123;&#x27;name&#x27;:&#x27;germey&#x27;&#125;</span><br><span class="line">data = bytes(parse.urlencode(dict),encoding = &#x27;utf-8&#x27;)</span><br><span class="line">req = request.Request(url=url,data=data,headers=headers,origin_req_host=&#x27;www.httpbin.org&#x27;,method=&#x27;POST&#x27;)</span><br><span class="line">response = request.urlopen(req)</span><br><span class="line">print(response.read().decode(&#x27;utf-8&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>这里我们通过4个参数构造了一个Reuqust类，其中的url即请求URL，headers中指定了User-Agent和Host，data用urlencode方法和bytes方法吧字典数据转成字节流格式。另外，指定了请求方式为POST。<br>运行结果如下：</p>
+<pre><code>&#123;
+  &quot;args&quot;: &#123;&#125;, 
+  &quot;data&quot;: &quot;&quot;, 
+  &quot;files&quot;: &#123;&#125;, 
+  &quot;form&quot;: &#123;
+    &quot;name&quot;: &quot;germey&quot;
+  &#125;, 
+  &quot;headers&quot;: &#123;
+    &quot;Accept-Encoding&quot;: &quot;identity&quot;, 
+    &quot;Content-Length&quot;: &quot;11&quot;, 
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;, 
+    &quot;Host&quot;: &quot;www.httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-61ff57db-247af137696671ad3f2f0316&quot;
+  &#125;, 
+  &quot;json&quot;: null, 
+  &quot;origin&quot;: &quot;36.28.50.254&quot;, 
+  &quot;url&quot;: &quot;https://www.httpbin.org/post&quot;
+&#125;
+</code></pre>
+<p>通过结果可以发现，我们成功设置了data、headers和method。<br>通过add_header方法天界headers的方式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">req = request.Request(url=url,data=data,method=&#x27;POST&#x27;)</span><br><span class="line">req.add_header(&#x27;User-Agent&#x27;,&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64)&#x27;)</span><br></pre></td></tr></table></figure>
+<p>有了Request类，我们就可以更方便地构建请求，并实现请求的发送啦。</p>
+<h4 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h4><p>我们已经构建请求了，那么对于一些更高级的操作（例如Cookie、代理设置等），又该怎么实现呢？<br>此时我们需要更强大的工具，于是Handler登场了。简而言之，Handler可以理解为各种处理器，有专门处理登录验证的，处理Cookie的、处理代理设置的。利用这Handler,我们几乎可以实现HTTP请求中所有功能。<br>首先介绍一下urllib.request模块里的BaseHandler类，这是其他所有Handler类的父类。它提供了最基本的方法，例如default_open、protocol_request等。</p>
+<p>会有各种Handler子类继承BaseHandler类，接下来举几个子类的例子如下。</p>
+<blockquote>
+<p>HTTPDefaultErrorHandler用于处理HTTP响应错误，所有错误都会抛出HTTPError类型的错误。<br>HTTPRedirectHandler用于重定向。<br>HTTPCookieProcessor用于处理Cookie。<br>ProxyHandler用于设置代理，代理默认为空。<br>HTTPPasswordMgr用于管理密码，它维护着用户名密码的对照表。<br>HTTPBasicAuthHandler用于管理认证，如果一个链接在打开时需要认证，那么可以用这个类来解决认证问题。</p>
+</blockquote>
+<p>关于这些类如何使用，现在先不着急了解，后面会用实例演示。</p>
+<p>另一个比较重要的类是OpenerDirector，我们可以称之为Opener。我们之前用过的urlopen方法，实际上就是urllib库为我们提供的一个Opener。</p>
+<p>那么，为什么要引入Opener呢？因为需要实现更高级的功能。之前使用的Request类和urlopen类相当于类库已经封装好的极其常用的请求方法，利用这两个可以完成基本的请求，但是现在我们需要实现更高级的功能，就需要深入一层进行配置，使用更底层的实力来完成操作，所以这里就用到了Opener。</p>
+<p>Opener类可以提供open方法，该方法返回的响应类型和urlopen方法如出一辙。那么，Opener类和Handler类有什么关系呢？简而言之就是，利用Handler类来构建Opener类</p>
+<p>下面用几个实例来看看Handler类和Opener类的用法。</p>
+<h4 id="urlencode"><a href="#urlencode" class="headerlink" title="urlencode"></a>urlencode</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from urllib.parse import urlencode</span><br><span class="line"></span><br><span class="line">params = &#123;</span><br><span class="line">    &#x27;name&#x27;:&#x27;germey&#x27;,</span><br><span class="line">    &#x27;age&#x27;:25</span><br><span class="line">&#125;</span><br><span class="line">base_url = &quot;https://www.baidu.com?&quot;</span><br><span class="line">url = base_url+urlencode(params)</span><br><span class="line">print(url)</span><br></pre></td></tr></table></figure>
+
+<pre><code>https://www.baidu.com?name=germey&amp;age=25
+</code></pre>
+<h4 id="parse-qs"><a href="#parse-qs" class="headerlink" title="parse_qs"></a>parse_qs</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from urllib.parse import parse_qs</span><br><span class="line"></span><br><span class="line">query = &#x27;name=germy&amp;age=25&#x27;</span><br><span class="line">print(parse_qs(query))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;name&#39;: [&#39;germy&#39;], &#39;age&#39;: [&#39;25&#39;]&#125;
+</code></pre>
+<h4 id="parse-qsl"><a href="#parse-qsl" class="headerlink" title="parse_qsl"></a>parse_qsl</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from urllib.parse import parse_qsl</span><br><span class="line"></span><br><span class="line">query = &#x27;name=germy&amp;age=25&#x27;</span><br><span class="line">print(parse_qsl(query))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[(&#39;name&#39;, &#39;germy&#39;), (&#39;age&#39;, &#39;25&#39;)]
+</code></pre>
+<h4 id="quote"><a href="#quote" class="headerlink" title="quote"></a>quote</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.parse import quote</span><br><span class="line"></span><br><span class="line">keyword = &quot;壁纸&quot;</span><br><span class="line">url = &quot;https://www.baidu.com/s?wd=&quot;+quote(keyword)</span><br><span class="line">print(url)</span><br></pre></td></tr></table></figure>
+
+<pre><code>https://www.baidu.com/s?wd=%E5%A3%81%E7%BA%B8
+</code></pre>
+<h4 id="unquote"><a href="#unquote" class="headerlink" title="unquote"></a>unquote</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from urllib.parse import quote,unquote</span><br><span class="line"></span><br><span class="line">keyword = &quot;壁纸&quot;</span><br><span class="line">p = quote(keyword)</span><br><span class="line">url = &quot;https://www.baidu.com/s?wd=&quot;+p</span><br><span class="line">print(url)</span><br><span class="line">print(unquote(url))</span><br></pre></td></tr></table></figure>
+
+<pre><code>https://www.baidu.com/s?wd=%E5%A3%81%E7%BA%B8
+https://www.baidu.com/s?wd=壁纸
+</code></pre>
+<h4 id="分析robots协议"><a href="#分析robots协议" class="headerlink" title="分析robots协议"></a>分析robots协议</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from urllib.robotparser import RobotFileParser</span><br><span class="line"></span><br><span class="line">rp = RobotFileParser()</span><br><span class="line">rp.set_url(&#x27;https://www.baidu.com/robots.txt&#x27;)</span><br><span class="line">rp.read()</span><br><span class="line">print(rp.can_fetch(&#x27;Baiduspider&#x27;,&#x27;https://www.baidu.com/&#x27;))</span><br><span class="line">print(rp.can_fetch(&#x27;Baiduspider&#x27;,&#x27;https://www.baidu.com/homepage/&#x27;))</span><br><span class="line">print(rp.can_fetch(&#x27;Googlebot&#x27;,&#x27;https://www.baidu.com/homepage/&#x27;))</span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+True
+False
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from urllib import request</span><br><span class="line">res = request.urlopen(&#x27;https://www.baidu.com/robots.txt&#x27;)</span><br><span class="line">print(res.read().decode(&#x27;utf-8&#x27;))</span><br></pre></td></tr></table></figure>
+
+<pre><code>User-agent: Baiduspider
+Disallow: /baidu
+Disallow: /s?
+Disallow: /ulink?
+Disallow: /link?
+Disallow: /home/news/data/
+Disallow: /bh
+
+User-agent: Googlebot
+Disallow: /baidu
+Disallow: /s?
+Disallow: /shifen/
+Disallow: /homepage/
+Disallow: /cpro
+Disallow: /ulink?
+Disallow: /link?
+Disallow: /home/news/data/
+Disallow: /bh
+</code></pre>
+<h2 id="requests的使用"><a href="#requests的使用" class="headerlink" title="requests的使用"></a>requests的使用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from urllib.robotparser import RobotFileParser</span><br><span class="line">from urllib import request</span><br><span class="line"></span><br><span class="line">response = request.urlopen(&#x27;https://www.baidu.com/robots.txt&#x27;)</span><br><span class="line">rp = RobotFileParser()</span><br><span class="line">rp.parse(response.read().decode(&#x27;utf-8&#x27;).split(&#x27;\n&#x27;))</span><br><span class="line">print(rp.can_fetch(&#x27;Baiduspider&#x27;,&#x27;https://www.baidu.com/&#x27;))</span><br><span class="line">print(rp.can_fetch(&#x27;Baiduspider&#x27;,&#x27;https://www.baidu.com/homepage/&#x27;))</span><br><span class="line">print(rp.can_fetch(&#x27;Googlebot&#x27;,&#x27;https://www.baidu.com/homepage/&#x27;))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;requests.models.Response&#39;&gt;
+200
+&lt;class &#39;str&#39;&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt;&lt;meta http-equiv=content-type content=text/html;charse
+&lt;RequestsCookieJar[&lt;Cookie BDORZ=27315 for .baidu.com/&gt;]&gt;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://www.httpbin.org/get&#x27;)</span><br><span class="line">r = requests.post(&#x27;https://www.httpbin.org/post&#x27;)</span><br><span class="line">r = requests.put(&#x27;https://www.httpbin.org/put&#x27;)</span><br><span class="line">r = requests.delete(&#x27;https://www.httpbin.org/delete&#x27;)</span><br><span class="line">r = requests.patch(&#x27;https://www.httpbin.org/patch&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">r = requests.get(&#x27;https://www.httpbin.org/get&#x27;)</span><br><span class="line">print(r.text)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;args&quot;: &#123;&#125;, 
+  &quot;headers&quot;: &#123;
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Host&quot;: &quot;www.httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.27.1&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-61ffd810-2a681e25600cd3df072e03a4&quot;
+  &#125;, 
+  &quot;origin&quot;: &quot;36.28.50.254&quot;, 
+  &quot;url&quot;: &quot;https://www.httpbin.org/get&quot;
+&#125;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;name&#x27;:&#x27;germey&#x27;,</span><br><span class="line">    &#x27;age&#x27;:25</span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(&#x27;https://www.httpbin.org/get&#x27;,params=data)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;args&quot;: &#123;
+    &quot;age&quot;: &quot;25&quot;, 
+    &quot;name&quot;: &quot;germey&quot;
+  &#125;, 
+  &quot;headers&quot;: &#123;
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Host&quot;: &quot;www.httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.27.1&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-61ffe7a5-6d4bbfc272b8d1de5896aa47&quot;
+  &#125;, 
+  &quot;origin&quot;: &quot;36.28.50.254&quot;, 
+  &quot;url&quot;: &quot;https://www.httpbin.org/get?name=germey&amp;age=25&quot;
+&#125;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://www.httpbin.org/get&#x27;)</span><br><span class="line">print(type(r.text))</span><br><span class="line">print(r.json())</span><br><span class="line">print(type(r.json()))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;str&#39;&gt;
+&#123;&#39;args&#39;: &#123;&#125;, &#39;headers&#39;: &#123;&#39;Accept&#39;: &#39;*/*&#39;, &#39;Accept-Encoding&#39;: &#39;gzip, deflate&#39;, &#39;Host&#39;: &#39;www.httpbin.org&#39;, &#39;User-Agent&#39;: &#39;python-requests/2.27.1&#39;, &#39;X-Amzn-Trace-Id&#39;: &#39;Root=1-61ffe8c0-29e010d739afac8a0e8dab53&#39;&#125;, &#39;origin&#39;: &#39;36.28.50.254&#39;, &#39;url&#39;: &#39;https://www.httpbin.org/get&#39;&#125;
+&lt;class &#39;dict&#39;&gt;
+</code></pre>
+<h4 id="抓取网页"><a href="#抓取网页" class="headerlink" title="抓取网页"></a>抓取网页</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://ssr1.scrape.center/&#x27;)</span><br><span class="line">pattern = re.compile(&#x27;&lt;h2.*?&gt;(.*?)&lt;/h2&gt;&#x27;,re.S)</span><br><span class="line">title = re.findall(pattern,r.text)</span><br><span class="line">print(title)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;霸王别姬 - Farewell My Concubine&#39;, &#39;这个杀手不太冷 - Léon&#39;, &#39;肖申克的救赎 - The Shawshank Redemption&#39;, &#39;泰坦尼克号 - Titanic&#39;, &#39;罗马假日 - Roman Holiday&#39;, &#39;唐伯虎点秋香 - Flirting Scholar&#39;, &#39;乱世佳人 - Gone with the Wind&#39;, &#39;喜剧之王 - The King of Comedy&#39;, &#39;楚门的世界 - The Truman Show&#39;, &#39;狮子王 - The Lion King&#39;]
+</code></pre>
+<h4 id="抓取二进制数据"><a href="#抓取二进制数据" class="headerlink" title="抓取二进制数据"></a>抓取二进制数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://scrape.center/favicon.ico&#x27;)</span><br><span class="line">print(r.text)</span><br><span class="line">print(r.content)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>r.text</p>
+</blockquote>
+<pre><code>         �     (       @                         W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��X@��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��X@��W?��W?��W?��W?��W?��W?��W?��X@��R:��J1��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��J1��R:��X@��W?��W?��W?��W?��W?��X@��R:��r]������������������������������������������������������������������������������������������r]��R:��X@��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������t_��&#123;g��zf��zf��zf��zf��zf��zf��zf��zf��&#123;g��t_��������������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������t`��G-��Q8��O6��O6��O6��O6��O6��O6��O6��O6��Q8��G.��t_����������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������&#123;h��Q8��ZC��YA��YB��[D��[D��[D��[D��[D��[D��]F��T&lt;��&#125;j����������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��YA��X@��T&lt;��K2��K2��K2��K2��K2��K2��M4��C)��q\����������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��YB��T;��fO����������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��ZC��O6��|j����������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��ZC��O6��&#123;j����������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��ZC��O6��|j����������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��ZC��O6��|j����������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2����������������������zf��O6��YA��U=��_I��&#125;l��|j��|j��|j��|j��|j��|j��|j��|j��|j��|j��&#123;j��m��fP��T&lt;��X@��W?��W?��W?��W?��ZB��K2����������������������zf��O6��YA��W?��U=��O5��O6��O6��O6��O6��O6��O6��O6��O6��O6��O6��O6��N5��T;��X@��W?��W?��W?��W?��W?��ZB��K2����������������������&#123;h��Q8��ZC��YA��YA��[C��ZC��ZC��ZC��ZC��ZC��ZC��ZC��ZC��ZC��ZC��ZC��[C��XA��W?��W?��W?��W?��W?��W?��ZB��K2����������������������t`��H-��Q8��O6��O6��O6��O6��O6��O6��O6��O6��O6��O6��O6��O6��O6��P7��O6��T&lt;��X@��W?��W?��W?��W?��W?��ZB��K2��������������������������s`��&#123;h��zf��zf��zf��zf��zf��zf��zf��zf��zf��zf��zf��zf��zf��yf��|i��dO��U&lt;��X@��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��ZB��K2��������������������������������������������������������������������������������������������������K2��ZB��W?��W?��W?��W?��X@��R:��r^������������������������������������������������������������������������������������������r]��R:��X@��W?��W?��W?��W?��W?��X@��R:��J1��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��K2��J1��R:��X@��W?��W?��W?��W?��W?��W?��W?��X@��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��ZB��X@��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W?��W
+</code></pre>
+<blockquote>
+<p>r.content    </p>
+</blockquote>
+<pre><code>b&#39;\x00\x00\x01\x00\x01\x00  \x00\x00\x01\x00 \x00\xa8\x10\x00\x00\x16\x00\x00\x00(\x00\x00\x00 \x00\x00\x00@\x00\x00\x00\x01\x00 \x00\x00\x00\x00\x00\x00\x10\x00\x00\x12\x0b\x00\x00\x12\x0b\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00W?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffX@\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffZB\xeb\xffX@\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffX@\xeb\xffR:\xea\xffJ1\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffK2\xea\xffJ1\xea\xffR:\xea\xffX@\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffX@\xeb\xffR:\xea\xffr]\xee\xff\x9f\x91\xf4\xff\x9a\x8a\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x9b\x8b\xf3\xff\x99\x8a\xf3\xff\x9f\x91\xf4\xffr]\xee\xffR:\xea\xffX@\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffZB\xeb\xffK2\xea\xff\x9a\x8c\xf3\xff\xff\xff\xff\xff\xfc\xfc\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfc\xfc\xff\xff\xff\xff\xff\xff\x9a\x8c\xf3\xffK2\xea\xffZB\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffW?\xeb\xffZB\xeb\xffK2\xea\xff\x99\x8a\xf3\xff\xff\xff\xff\xff\xfa\xf9\xfe\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc\xff\xff\xfc\xfc
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://scrape.center/favicon.ico&#x27;)</span><br><span class="line">with open(&#x27;favicon.ico&#x27;,&#x27;wb&#x27;) as f:</span><br><span class="line">    f.write(r.content)</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加请求头"><a href="#添加请求头" class="headerlink" title="添加请求头"></a>添加请求头</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">header = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;:&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&#x27;</span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(&#x27;https://httpbin.org/get&#x27;,headers=header)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;args&quot;: &#123;&#125;, 
+  &quot;headers&quot;: &#123;
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Host&quot;: &quot;httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-6200bc86-1d8d3be041e3ac734582cae3&quot;
+  &#125;, 
+  &quot;origin&quot;: &quot;36.28.30.92&quot;, 
+  &quot;url&quot;: &quot;https://httpbin.org/get&quot;
+&#125;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">data = &#123;&#x27;name&#x27;:&#x27;germey&#x27;,&#x27;age&#x27;:&#x27;25&#x27;&#125;</span><br><span class="line">r = requests.post(&#x27;https://www.httpbin.org/post&#x27;,data=data)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;args&quot;: &#123;&#125;, 
+  &quot;data&quot;: &quot;&quot;, 
+  &quot;files&quot;: &#123;&#125;, 
+  &quot;form&quot;: &#123;
+    &quot;age&quot;: &quot;25&quot;, 
+    &quot;name&quot;: &quot;germey&quot;
+  &#125;, 
+  &quot;headers&quot;: &#123;
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Content-Length&quot;: &quot;18&quot;, 
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;, 
+    &quot;Host&quot;: &quot;www.httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;python-requests/2.27.1&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-6200bd3d-623720004f80b8cb072e551d&quot;
+  &#125;, 
+  &quot;json&quot;: null, 
+  &quot;origin&quot;: &quot;36.28.30.92&quot;, 
+  &quot;url&quot;: &quot;https://www.httpbin.org/post&quot;
+&#125;
+</code></pre>
+<h4 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.post(&#x27;https://www.httpbin.org/post&#x27;)</span><br><span class="line">print(type(r.status_code),r.status_code)</span><br><span class="line">print(type(r.headers),r.headers)</span><br><span class="line">print(type(r.cookies),r.cookies)</span><br><span class="line">print(type(r.url),r.url)</span><br><span class="line">print(type(r.history),r.history)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;int&#39;&gt; 200
+&lt;class &#39;requests.structures.CaseInsensitiveDict&#39;&gt; &#123;&#39;Date&#39;: &#39;Mon, 07 Feb 2022 06:46:09 GMT&#39;, &#39;Content-Type&#39;: &#39;application/json&#39;, &#39;Content-Length&#39;: &#39;405&#39;, &#39;Connection&#39;: &#39;keep-alive&#39;, &#39;Server&#39;: &#39;gunicorn/19.9.0&#39;, &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;, &#39;Access-Control-Allow-Credentials&#39;: &#39;true&#39;&#125;
+&lt;class &#39;requests.cookies.RequestsCookieJar&#39;&gt; &lt;RequestsCookieJar[]&gt;
+&lt;class &#39;str&#39;&gt; https://www.httpbin.org/post
+&lt;class &#39;list&#39;&gt; []
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://ssr1.scrape.center/&#x27;)</span><br><span class="line">exit() if not r.status_code == requests.codes.ok else print(&#x27;Request successfully&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="cookie设置"><a href="#cookie设置" class="headerlink" title="cookie设置"></a>cookie设置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">Cookies=&#x27;_device_id=e9e3309ca2f53cde288fcd882275df1f; _octo=GH1.1.407237607.1641277350; user_session=l-6hmCWnicBdN8ViZz-pra5acK3owr5AVz-w_A0Qore_yaaH; __Host-user_session_same_site=l-6hmCWnicBdN8ViZz-pra5acK3owr5AVz-w_A0Qore_yaaH; logged_in=yes; dotcom_user=iiheng; has_recent_activity=1; color_mode=&#123;&quot;color_mode&quot;:&quot;auto&quot;,&quot;light_theme&quot;:&#123;&quot;name&quot;:&quot;light&quot;,&quot;color_mode&quot;:&quot;light&quot;&#125;,&quot;dark_theme&quot;:&#123;&quot;name&quot;:&quot;dark&quot;,&quot;color_mode&quot;:&quot;dark&quot;&#125;&#125;; _gh_sess=b+r4XZ3MQ9Z80zBfBGpbshAOVPvpjyrRf9MGcUdtSMBINWBx6SQt0Q41J7jYuof+NrPEthD++o+JDBWNdOv3UOetNMIE1+/6+/Vo8pry5uu8qZRVQUeExHnZlylNZZSIVdN33AUmoydiT8QNnKuf7yflZR8fNpplEAVNGf82eXt0wyrWKrvW7AsJvJrFLzPc--oV0oVXYX21+2D+u3--HQ0wOunUOjJxlX4RaS5B6A==&#x27;</span><br><span class="line">jar = requests.cookies.RequestsCookieJar()</span><br><span class="line">for cookie in Cookies.split(&#x27;;&#x27;):</span><br><span class="line">    key,value = cookie.split(&#x27;=&#x27;,1)</span><br><span class="line">    print(key,&#x27;=&#x27;,value)</span><br><span class="line">    jar.set(key,value)</span><br><span class="line"></span><br><span class="line">header = &#123;</span><br><span class="line">    &#x27;User-agent&#x27;:&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&#x27;,</span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(&#x27;https://github.com&#x27;,headers = header,cookies = jar)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<h4 id="session维持"><a href="#session维持" class="headerlink" title="session维持"></a>session维持</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">requests.get(&#x27;https://www.httpbin.org/cookies/set/number/123456789&#x27;)</span><br><span class="line">r = requests.get(&#x27;https://www.httpbin.org/cookies&#x27;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;cookies&quot;: &#123;&#125;
+&#125;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">s = requests.session()</span><br><span class="line">s.get(&#x27;https://www.httpbin.org/cookies/set/number/123456789&#x27;)</span><br><span class="line">r = s.get(&#x27;https://www.httpbin.org/cookies&#x27;)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;cookies&quot;: &#123;
+    &quot;number&quot;: &quot;123456789&quot;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="SSL证书验证"><a href="#SSL证书验证" class="headerlink" title="SSL证书验证"></a>SSL证书验证</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">response = requests.get(&#x27;https://ssr2.scrape.center/&#x27;)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+
+<pre><code>........requests.exceptions.SSLError: HTTPSConnectionPool(host=&#39;ssr2.scrape.center&#39;, port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, &#39;[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1129)&#39;)))
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">response = requests.get(&#x27;https://ssr2.scrape.center/&#x27;,verify=False)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+
+<pre><code>InsecureRequestWarning: Unverified HTTPS request is being made to host &#39;ssr2.scrape.center&#39;. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(
+200
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from requests.packages import urllib3</span><br><span class="line"></span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line">response = requests.get(&#x27;https://ssr2.scrape.center/&#x27;,verify=False)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import logging</span><br><span class="line"></span><br><span class="line">logging.captureWarnings(True)</span><br><span class="line">response = requests.get(&#x27;https://ssr2.scrape.center/&#x27;,verify=False)</span><br><span class="line">print(response.status_code)</span><br></pre></td></tr></table></figure>
+<h4 id="超时设置"><a href="#超时设置" class="headerlink" title="超时设置"></a>超时设置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;https://httpbin.org/get&#x27;,timeout=0.1)</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
+
+<pre><code>r = requests.get(&#39;https://httpbin.org/get&#39;,timeout=(2,5))
+    
+r = requests.get(&#39;https://httpbin.org/get&#39;,timeout=None)
+
+r = requests.get(&#39;https://httpbin.org/get&#39;)
+</code></pre>
+<h4 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from requests.auth import HTTPBasicAuth</span><br><span class="line"></span><br><span class="line">r = requests.get(&#x27;http://ssr3.scrape.center/&#x27;,auth=HTTPBasicAuth(&#x27;admin&#x27;,&#x27;admin&#x27;))</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from requests_oauthlib import OAuth1</span><br><span class="line"></span><br><span class="line">url = &#x27;https://api.twitter.com/1.1/account/verify_credentials.json&#x27;</span><br><span class="line">auth = OAuth1(&#x27;YOUR_APP_KEY&#x27;,&#x27;YOUR_APP_SECRET&#x27;,&#x27;USER_OAUTH_TOKEN&#x27;,&#x27;USER_OAUTH_TOKEN_SECRET&#x27;)</span><br><span class="line">requests.get(url,auth = auth)</span><br></pre></td></tr></table></figure>
+
+<h4 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">proxies = &#123;</span><br><span class="line">    &#x27;http&#x27;:&#x27;http://10.10.10.10:1080&#x27;,</span><br><span class="line">    &#x27;https&#x27;:&#x27;http://10.10.10.10:1080&#x27;</span><br><span class="line">&#125;</span><br><span class="line">requests.get(&#x27;https://httpbin.org/get&#x27;,proxies=proxies)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Prepared-Request"><a href="#Prepared-Request" class="headerlink" title="Prepared Request"></a>Prepared Request</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">from requests import Request,Session</span><br><span class="line"></span><br><span class="line">url = &#x27;https://www.httpbin.org/post&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;name&#x27;:&#x27;germey&#x27;</span><br><span class="line">&#125;</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;:&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&#x27;</span><br><span class="line">&#125;</span><br><span class="line">s = Session()</span><br><span class="line">req = Request(&#x27;POST&#x27;,url,data = data,headers = headers)</span><br><span class="line">prepped = s.prepare_request(req)</span><br><span class="line">r = s.send(prepped)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;
+  &quot;args&quot;: &#123;&#125;, 
+  &quot;data&quot;: &quot;&quot;, 
+  &quot;files&quot;: &#123;&#125;, 
+  &quot;form&quot;: &#123;
+    &quot;name&quot;: &quot;germey&quot;
+  &#125;, 
+  &quot;headers&quot;: &#123;
+    &quot;Accept&quot;: &quot;*/*&quot;, 
+    &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, 
+    &quot;Content-Length&quot;: &quot;11&quot;, 
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;, 
+    &quot;Host&quot;: &quot;www.httpbin.org&quot;, 
+    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36 Edg/98.0.1108.43&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-6200f12c-61139caf50e3f6d713578e40&quot;
+  &#125;, 
+  &quot;json&quot;: null, 
+  &quot;origin&quot;: &quot;36.28.30.92&quot;, 
+  &quot;url&quot;: &quot;https://www.httpbin.org/post&quot;
 &#125;
 </code></pre>
 
@@ -433,7 +732,7 @@ nginx
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#urllib%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">urllib的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">发送请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#urlopen"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">urlopen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">data参数</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#urllib%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">urllib的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">发送请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#urlopen"><span class="nav-number">2.1.1.</span> <span class="nav-text">urlopen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">data参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timeout%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.3.</span> <span class="nav-text">timeout参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.4.</span> <span class="nav-text">其他参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Request"><span class="nav-number">2.1.5.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="nav-number">2.1.6.</span> <span class="nav-text">高级用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#urlencode"><span class="nav-number">2.1.7.</span> <span class="nav-text">urlencode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parse-qs"><span class="nav-number">2.1.8.</span> <span class="nav-text">parse_qs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parse-qsl"><span class="nav-number">2.1.9.</span> <span class="nav-text">parse_qsl</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#quote"><span class="nav-number">2.1.10.</span> <span class="nav-text">quote</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unquote"><span class="nav-number">2.1.11.</span> <span class="nav-text">unquote</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90robots%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.1.12.</span> <span class="nav-text">分析robots协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requests%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">requests的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET%E8%AF%B7%E6%B1%82"><span class="nav-number">3.0.1.</span> <span class="nav-text">GET请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%93%E5%8F%96%E7%BD%91%E9%A1%B5"><span class="nav-number">3.0.2.</span> <span class="nav-text">抓取网页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%93%E5%8F%96%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE"><span class="nav-number">3.0.3.</span> <span class="nav-text">抓取二进制数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="nav-number">3.0.4.</span> <span class="nav-text">添加请求头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%8D%E5%BA%94"><span class="nav-number">3.0.5.</span> <span class="nav-text">响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.0.6.</span> <span class="nav-text">cookie设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session%E7%BB%B4%E6%8C%81"><span class="nav-number">3.0.7.</span> <span class="nav-text">session维持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSL%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81"><span class="nav-number">3.0.8.</span> <span class="nav-text">SSL证书验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.0.9.</span> <span class="nav-text">超时设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81"><span class="nav-number">3.0.10.</span> <span class="nav-text">身份认证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.0.11.</span> <span class="nav-text">代理设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prepared-Request"><span class="nav-number">3.0.12.</span> <span class="nav-text">Prepared Request</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

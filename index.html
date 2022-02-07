@@ -321,7 +321,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-07 18:21:44" itemprop="dateModified" datetime="2022-02-07T18:21:44+08:00">2022-02-07</time>
+                <time title="修改时间：2022-02-07 20:26:57" itemprop="dateModified" datetime="2022-02-07T20:26:57+08:00">2022-02-07</time>
               </span>
 
           
@@ -731,6 +731,106 @@ r = requests.get(&#39;https://httpbin.org/get&#39;)
   &quot;url&quot;: &quot;https://www.httpbin.org/post&quot;
 &#125;
 </code></pre>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>\w</code></td>
+<td>匹配字母、数字及下划线</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配不是字母、数字及下划线的字符</td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配任意空白字符，等价于<code>[\t\n\r\f]</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配任意非空字符</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>匹配任意数字，等价于<code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td><code>\A</code></td>
+<td>匹配字符串开头</td>
+</tr>
+<tr>
+<td><code>\Z</code></td>
+<td>匹配字符串结尾。如果存在换行，只匹配到换行前的结束字符串</td>
+</tr>
+<tr>
+<td><code>\z</code></td>
+<td>匹配字符串结尾。如果存在换行，同时还会匹配换行符</td>
+</tr>
+<tr>
+<td><code>\G</code></td>
+<td>匹配最后匹配完成的位置</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>匹配一个换行符</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>匹配一个制表符</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>匹配一行字符串开头</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>匹配一行字符串的结尾</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>匹配任意字符，除了换行符，当re.DOTALL标记被指定时，可以匹配包括换行符的任意字符</td>
+</tr>
+<tr>
+<td><code>[...]</code></td>
+<td>用来表示一组字符，单独列出，例如<code>[amk]</code>用来匹配a、m或k</td>
+</tr>
+<tr>
+<td><code>[^...]</code></td>
+<td>匹配不在<code>[]</code>中的字符，例如<code>[^abc]</code>匹配除了a,b,c之外的字符</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>匹配0个或多个表达式</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>匹配1个或多个表达式</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>匹配0个或1个前面的正则表达式定义的片段，非贪婪方式</td>
+</tr>
+<tr>
+<td><code>&#123;&#125;</code></td>
+<td>精准匹配n个前面的表达式</td>
+</tr>
+<tr>
+<td><code>&#123;n,m&#125;</code></td>
+<td>匹配n到m次有前面正则表达式定义的片段，贪婪方式</td>
+</tr>
+<tr>
+<td><code>a|b</code></td>
+<td>匹配括号内的表达式，也表示一个组</td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -929,7 +1029,7 @@ r = requests.get(&#39;https://httpbin.org/get&#39;)
 <ol>
 <li><h2 id="语句：-8"><a href="#语句：-8" class="headerlink" title="语句："></a>语句：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一个链接：[毅恒-个人博客](https://blog.iheng.xyz &quot;回到主页&quot;)</span><br><span class="line">&lt;http://blog.iheng.xyz&gt;</span><br><span class="line">&lt;fake@example.com&gt;</span><br></pre></td></tr></table></figure></li>
 <li><h2 id="效果：-8"><a href="#效果：-8" class="headerlink" title="效果："></a>效果：</h2><blockquote>
-<p>这是一个链接：<a href="https://blog.iheng.xyz/" title="回到主页">毅恒-个人博客</a><br><a href="http://blog.iheng.xyz/">http://blog.iheng.xyz</a><br><a href="mailto:&#x66;&#97;&#107;&#x65;&#64;&#101;&#x78;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;">&#x66;&#97;&#107;&#x65;&#64;&#101;&#x78;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;</a></p>
+<p>这是一个链接：<a href="https://blog.iheng.xyz/" title="回到主页">毅恒-个人博客</a><br><a href="http://blog.iheng.xyz/">http://blog.iheng.xyz</a><br><a href="mailto:&#102;&#97;&#107;&#101;&#x40;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#111;&#x6d;">&#102;&#97;&#107;&#101;&#x40;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a></p>
 <blockquote>
 <p>还有更多效果请前往官方文档查看：<a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/links.html" title="https://markdown.com.cn/basic-syntax/links.html">MarkDown官方文档</a></p>
 </blockquote>

@@ -419,3 +419,502 @@ print(c)
 
 	[ 10  40  90 160]
 	
+```commandline
+import numpy as np
+
+a = np.array([[0,0,0],[10,10,10],[20,20,20],[30,30,30]])
+b = np.array([1,2,3])
+print(a + b)
+```
+    
+    [[ 1  2  3]
+     [11 12 13]
+     [21 22 23]
+     [31 32 33]]
+
+```commandline
+import numpy as np
+
+a = np.array([[0,0,0],[10,10,10],[20,20,20],[30,30,30]])
+b = np.array([1,2,3])
+bb = np.tile(b,(4,1))
+print(a + bb)
+```
+
+  [[ 1  2  3]
+   [11 12 13]
+   [21 22 23]
+   [31 32 33]]
+
+## NumPy 迭代数组
+```commandline
+import numpy as np
+
+a = np.arange(6).reshape(2,3)
+print(a)
+for x in np.nditer(a.T):
+    print(x,end=",")
+print('\n')
+
+for x in np.nditer(a.T.copy(order='C')):
+    print(x,end=",")
+print('\n')
+```
+
+   [[0 1 2]
+    [3 4 5]]
+   0,1,2,3,4,5,
+   
+   0,3,1,4,2,5,
+   
+### 控制遍历顺序
+> for x in np.nditer(a,order="F"): Fortran order,即是列表优先
+> for x in np.nditer(a.T,order='C'):C order ,即是行序优先
+
+```commandline
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print("原始数组是：")
+print(a)
+print("\n")
+print('原始数组的转置是：')
+b = a.T
+print(b)
+print("\n")
+print('以C风格顺序排序：')
+c = b.copy(order="C")
+print(c)
+for x in np.nditer(c):
+    print(x,end=",")
+
+print("\n")
+print("以F风格顺序排序：")
+c = b.copy(order="F")
+print(c)
+for x in np.nditer(c):
+    print(x,end=",")
+```
+    原始数组是：
+    [[ 0  5 10 15]
+     [20 25 30 35]
+     [40 45 50 55]]
+    
+    
+    原始数组的转置是：
+    [[ 0 20 40]
+     [ 5 25 45]
+     [10 30 50]
+     [15 35 55]]
+    
+    
+    以C风格顺序排序：
+    [[ 0 20 40]
+     [ 5 25 45]
+     [10 30 50]
+     [15 35 55]]
+    0,20,40,5,25,45,10,30,50,15,35,55,
+    
+    以F风格顺序排序：
+    [[ 0 20 40]
+     [ 5 25 45]
+     [10 30 50]
+     [15 35 55]]
+    0,5,10,15,20,25,30,35,40,45,50,55,
+
+```commandline
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print("原始数组是：")
+print(a)
+print("\n")
+print("以C风格顺序排序")
+for x in np.nditer(a,order="C"):
+    print(x,end=",")
+print("\n")
+print("以F风格顺序排序：")
+for x in np.nditer(a,order="F"):
+    print(x,end=",")
+```
+
+    原始数组是：
+    [[ 0  5 10 15]
+     [20 25 30 35]
+     [40 45 50 55]]
+    
+    
+    以C风格顺序排序
+    0,5,10,15,20,25,30,35,40,45,50,55,
+    
+    以F风格顺序排序：
+    0,20,40,5,25,45,10,30,50,15,35,55,
+    Process finished with exit code 0
+
+```commandline
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print("原始数组是：")
+print(a)
+print('\n')
+for x in np.nditer(a,op_flags=['readwrite']):
+    x[...] = 2*x
+print("修改后的数组是：")
+print(a)
+```
+
+    原始数组是：
+    [[ 0  5 10 15]
+     [20 25 30 35]
+     [40 45 50 55]]
+    
+    
+    修改后的数组是：
+    [[  0  10  20  30]
+     [ 40  50  60  70]
+     [ 80  90 100 110]]
+
+```commandline
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print("原始数组是：")
+print(a)
+print('\n')
+for x in np.nditer(a,flags = ['external_loop'],order='F'):
+    print(x,end=",")
+```
+
+    [[ 0  5 10 15]
+     [20 25 30 35]
+     [40 45 50 55]]
+    
+    
+    [ 0 20 40],[ 5 25 45],[10 30 50],[15 35 55],
+
+```commandline
+import numpy as np
+
+a = np.arange(0,60,5)
+a = a.reshape(3,4)
+print("第一个数组为：")
+print(a)
+print("\n")
+print("第二个数组为：")
+b = np.array([1,2,3,4],dtype=int)
+print(b)
+print("\n")
+print("修改后的数组为：")
+for x,y in np.nditer([a,b]):
+    print("%d:%d"%(x,y),end=",")
+```
+
+    第一个数组为：
+    [[ 0  5 10 15]
+     [20 25 30 35]
+     [40 45 50 55]]
+    
+    
+    第二个数组为：
+    [1 2 3 4]
+    
+    
+    修改后的数组为：
+    0:1,5:2,10:3,15:4,20:1,25:2,30:3,35:4,40:1,45:2,50:3,55:4,
+
+## Numpy数组操作
+### 修改数组形状
+
+|函数| 描述                        |
+|-----|---------------------------|
+|reshape| 不改变数据的条件下修改形状             |
+|flat| 数组元素迭代器                   |
+|flatten| 返回一份数组拷贝，对拷贝所做的修改不会影响原始数组 |
+|ravel|返回展开数组|
+
+#### numpy.reshape
+```commandline
+import numpy as np
+
+a = np.arange(8)
+print("原始数组：")
+print(a)
+print("\n")
+
+b = a.reshape(4,2)
+print("修改后的数组")
+print(b)
+```
+    
+    原始数组：
+    [0 1 2 3 4 5 6 7]
+    
+    
+    修改后的数组
+    [[0 1]
+     [2 3]
+     [4 5]
+     [6 7]]
+
+#### numpy.ndarray.flat
+```
+import numpy as np
+
+a = np.arange(9).reshape(3,3)
+print("原始数组：")
+for row in a:
+    print(row)
+
+print("迭代后的数组：")
+for element in a.flat:
+    print(element)
+```
+
+    原始数组：
+    [0 1 2]
+    [3 4 5]
+    [6 7 8]
+    迭代后的数组：
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+#### numpy.ndarray.flatten
+`ndarray.flatten(order="C")`
+> order:'C'--按行，'F'--按列，'A'--原顺序，'K'--元素在内存中的出现顺序。
+```
+import numpy as np
+
+a = np.arange(8).reshape(2,4)
+
+print("原数组：")
+print(a)
+print("\n")
+# 默认按行
+
+print("展开的数组：")
+print(a.flatten())
+print("\n")
+
+print("以 F 风格顺序展开的数组：")
+print(a.flatten(order='F'))
+```
+
+	原数组：
+	[[0 1 2 3]
+	 [4 5 6 7]]
+
+
+	展开的数组：
+	[0 1 2 3 4 5 6 7]
+
+
+	以 F 风格顺序展开的数组：
+	[0 4 1 5 2 6 3 7]
+	
+#### numpy.ravel
+`numpy.ravel(a,order="C")`
+
+> order:"C" --按行,"F"--按列,"A"--原顺序,"K"--元素在内存中的出现顺序。
+```
+import numpy as np
+
+a = np.arange(8).reshape(2,4)
+
+print("原数组：")
+print(a)
+print("\n")
+
+print("调用ravel函数之后：")
+print(a.ravel())
+print('\n')
+
+print('以F风格顺序调用ravel函数之后：')
+print(a.ravel(order="F"))
+```
+
+	原数组：
+	[[0 1 2 3]
+	 [4 5 6 7]]
+
+
+	调用ravel函数之后：
+	[0 1 2 3 4 5 6 7]
+
+
+	以F风格顺序调用ravel函数之后：
+	[0 4 1 5 2 6 3 7]
+	
+### 翻转数组
+
+|函数|描述|
+|----|----|
+|transpose|对换数组的维度|
+|ndarray.T|和self.transpose()相同|
+|rollaxis|向后滚动指定的轴|
+|swapaxes|对换数组的两个轴|
+
+#### numpy.transpose
+
+`numpy.transpose(arr,axes)`
+
+```
+import numpy as np
+
+a = np.arange(12).reshape(3,4)
+
+print("原数组：")
+print(a)
+print("\n")
+
+print("对换数组：")
+print(np.transpose(a))
+```
+
+	原数组：
+	[[ 0  1  2  3]
+	 [ 4  5  6  7]
+	 [ 8  9 10 11]]
+
+
+	对换数组：
+	[[ 0  4  8]
+	 [ 1  5  9]
+	 [ 2  6 10]
+	 [ 3  7 11]]
+
+#### numpy.ndarray.T
+ 
+```
+import numpy as np
+
+a = np.arange(12).reshape(3,4)
+
+print("原数组：")
+print(a)
+print("\n")
+
+print("转置数组：")
+print(a.T)
+```
+
+	原数组：
+	[[ 0  1  2  3]
+	 [ 4  5  6  7]
+	 [ 8  9 10 11]]
+
+
+	转置数组：
+	[[ 0  4  8]
+	 [ 1  5  9]
+	 [ 2  6 10]
+	 [ 3  7 11]]
+	 
+#### numpy.rollaxis
+`numpy.rollaxis(arr,axis,start)`
+
+```
+import numpy as np
+
+# 创建了三维的 ndarray
+a = np.arange(8).reshape(2,2,2)
+
+print('原数组：')
+print(a)
+print("获取数组中一个值：")
+print(np.where(a==6))
+print(np.where(a==4))
+print(a[1,1,0])
+print('\n')
+
+# 将轴 2 滚动到轴 0
+print("调用rollaxis函数1：")
+b = np.rollaxis(a,2,0)
+print(b)
+# 查看元素a[1,1,0],即 6 的坐标，变成[0,1,1]
+# 最后一个 0 移动到最前面
+print(np.where(b==6))
+print('\n')
+
+# 将轴 2 滚动到轴 1
+
+print("调用rollaxis函数2：")
+c = np.rollaxis(a,2,1)
+print(c)
+# 查看元素a[1,1,0],即 6 的坐标，变成[1,0,1]
+# 最后的 0 和它前面的 1 对换位置
+print(np.where(c==6))
+print("\n")
+```
+
+	原数组：
+	[[[0 1]
+	  [2 3]]
+
+	 [[4 5]
+	  [6 7]]]
+	获取数组中一个值：
+	(array([1], dtype=int64), array([1], dtype=int64), array([0], dtype=int64))
+	(array([1], dtype=int64), array([0], dtype=int64), array([0], dtype=int64))
+	6
+
+
+	调用rollaxis函数1：
+	[[[0 2]
+	  [4 6]]
+
+	 [[1 3]
+	  [5 7]]]
+	(array([0], dtype=int64), array([1], dtype=int64), array([1], dtype=int64))
+
+
+	调用rollaxis函数2：
+	[[[0 2]
+	  [1 3]]
+
+	 [[4 6]
+	  [5 7]]]
+	(array([1], dtype=int64), array([0], dtype=int64), array([1], dtype=int64))
+	
+#### numpy.swapaxes
+`numpy.swapaxes(arr,axis1,axis2)`
+
+```
+import numpy as np
+
+# 创建了三维的 ndarray
+a = np.arange(8).reshape(2,2,2)
+
+print("原数组：")
+print(a)
+print("\n")
+# 现在交换 0 到轴 2
+
+print("调用 swapaxes 函数后的数组：")
+print(np.swapaxes(a,2,0))
+```
+
+	[[[0 4]
+	  [2 6]]
+
+	 [[1 5]
+	  [3 7]]]
+	  
+### 修改数组维度
+|维度|描述|
+|broadcast|产生模仿广播的对象|
+|broadcast_to|将数组广播到新形状|
+|expand_dims|扩展数组的形状|
+|squeeze|从数组的形状中删除一维条目|
+
+#### numpy.broadcast

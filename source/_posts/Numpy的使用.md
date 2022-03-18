@@ -918,3 +918,425 @@ print(np.swapaxes(a,2,0))
 |squeeze|从数组的形状中删除一维条目|
 
 #### numpy.broadcast
+
+#### numpy.broadcast_to
+`numpy.broadcast_to(array, shape, subok)`
+
+```
+import numpy as np
+
+a = np.arange(4).reshape(1,4)
+
+print("原数组")
+print(a)
+print('\n')
+
+print('调用broadcast_to函数之后：')
+print(np.broadcast_to(a,(4,4)))
+```
+
+	原数组
+	[[0 1 2 3]]
+
+
+	调用broadcast_to函数之后：
+	[[0 1 2 3]
+	 [0 1 2 3]
+	 [0 1 2 3]
+	 [0 1 2 3]]
+	
+### 连接数组
+#### numpy.concatenate
+`numpy.concatenate((a1, a2, ...), axis)`
+```
+import numpy as np
+
+a = np.array([[1,2],[3,4]])
+
+print('第一个数组：')
+print(a)
+print('\n')
+b = np.array([[5,6],[7,8]])
+
+print('第二个数组：')
+print(b)
+print('\n')
+
+print('延轴 0 连接两个数组')
+print(np.concatenate((a,b)))
+print('\n')
+
+print('沿轴 1 连接两个数组：')
+print(np.concatenate((a,b),axis=1))
+```
+
+	第一个数组：
+	[[1 2]
+	 [3 4]]
+
+
+	第二个数组：
+	[[5 6]
+	 [7 8]]
+
+
+	延轴 0 连接两个数组
+	[[1 2]
+	 [3 4]
+	 [5 6]
+	 [7 8]]
+
+
+	沿轴 1 连接两个数组：
+	[[1 2 5 6]
+	 [3 4 7 8]]
+	 
+#### numpy.stack
+`numpy.stack(arrays, axis)`
+```
+import numpy as np
+
+a = np.array([[1,2],[3,4]])
+
+print('第一个数组：')
+print(a)
+print('\n')
+b = np.array([[5,6],[7,8]])
+
+print('第二个数组：')
+print(b)
+print('\n')
+
+print('延轴 0 堆叠两个数组：')
+print(np.stack((a,b)))
+print('\n')
+
+print('沿轴 1 堆叠两个数组：')
+print(np.stack((a,b),axis=1))
+```
+
+	第一个数组：
+	[[1 2]
+	 [3 4]]
+
+
+	第二个数组：
+	[[5 6]
+	 [7 8]]
+
+
+	延轴 0 连接两个数组
+	[[[1 2]
+	  [3 4]]
+
+	 [[5 6]
+	  [7 8]]]
+
+
+	沿轴 1 连接两个数组：
+	[[[1 2]
+	  [5 6]]
+
+	 [[3 4]
+	  [7 8]]]
+
+#### numpy.hstack
+```
+import numpy as np
+
+a = np.array([[1,2],[3,4]])
+
+print('第一个数组')
+print(a)
+print('\n')
+b = np.array([[5,6],[7,8]])
+
+print('第二个数组：')
+print(b)
+print('\n')
+
+print('水平堆叠：')
+c = np.hstack((a,b))
+print(c)
+print('\n')
+```
+
+	第一个数组
+	[[1 2]
+	 [3 4]]
+
+
+	第二个数组：
+	[[5 6]
+	 [7 8]]
+
+
+	水平堆叠：
+	[[1 2 5 6]
+	 [3 4 7 8]]
+	 
+#### numpy.vstack
+```
+import numpy as np
+
+a = np.array([[1,2],[3,4]])
+
+print('第一个数组')
+print(a)
+print('\n')
+b = np.array([[5,6],[7,8]])
+
+print('第二个数组：')
+print(b)
+print('\n')
+
+print('垂直堆叠：')
+c = np.vstack((a,b))
+print(c)
+```
+
+	第一个数组
+	[[1 2]
+	 [3 4]]
+
+
+	第二个数组：
+	[[5 6]
+	 [7 8]]
+
+
+	垂直堆叠：
+	[[1 2]
+	 [3 4]
+	 [5 6]
+	 [7 8]]
+	 
+### 分割数组
+#### numpy.split
+`numpy.split(ary, indices_or_sections, axis)`
+```
+import numpy as np
+
+a = np.arange(9)
+
+print('第一个数组：')
+print(a)
+print('\n')
+
+print("将数组分为三个大小相等的子数组：")
+b = np.split(a,3)
+print(b)
+print('\n')
+
+print('将数组在一维数组中表明的位置分割：')
+b = np.split(a,[4,7])
+print(b)
+```
+
+	第一个数组：
+	[0 1 2 3 4 5 6 7 8]
+
+
+	将数组分为三个大小相等的子数组：
+	[array([0, 1, 2]), array([3, 4, 5]), array([6, 7, 8])]
+
+
+	将数组在一维数组中表明的位置分割：
+	[array([0, 1, 2, 3]), array([4, 5, 6]), array([7, 8])]
+	
+```
+import numpy as np
+
+a = np.arange(16).reshape(4,4)
+print('第一个数组：')
+print(a)
+print('\n')
+print('默认分割（0轴）:')
+b = np.split(a,2)
+print(b)
+print('\n')
+
+print('沿垂直方向分割：')
+c = np.split(a,2,1)
+print(c)
+print('\n')
+
+print('沿水平方向分割：')
+d = np.hsplit(a,2)
+print(d)
+```
+
+	第一个数组：
+	[[ 0  1  2  3]
+	 [ 4  5  6  7]
+	 [ 8  9 10 11]
+	 [12 13 14 15]]
+
+
+	默认分割（0轴）：
+	[array([[0, 1, 2, 3],
+		   [4, 5, 6, 7]]), array([[ 8,  9, 10, 11],
+		   [12, 13, 14, 15]])]
+
+
+	沿垂直方向分割：
+	[array([[ 0,  1],
+		   [ 4,  5],
+		   [ 8,  9],
+		   [12, 13]]), array([[ 2,  3],
+		   [ 6,  7],
+		   [10, 11],
+		   [14, 15]])]
+
+
+	沿水平方向分割：
+	[array([[ 0,  1],
+		   [ 4,  5],
+		   [ 8,  9],
+		   [12, 13]]), array([[ 2,  3],
+		   [ 6,  7],
+		   [10, 11],
+		   [14, 15]])]
+		   
+#### numpy.hsplit
+```
+import numpy as np
+
+harr = np.floor(10 * np.random.random((2,6)))
+print('原array')
+print(harr)
+
+print('拆分后：')
+print(np.hsplit(harr,3))
+```
+
+	原array
+	[[3. 2. 3. 0. 3. 7.]
+	 [3. 5. 8. 3. 3. 1.]]
+	拆分后：
+	[array([[3., 2.],
+		   [3., 5.]]), array([[3., 0.],
+		   [8., 3.]]), array([[3., 7.],
+		   [3., 1.]])]
+		   
+#### numpy.vsplit
+```
+import numpy as np
+
+a = np.arange(16).reshape(4,4)
+
+print('第一个数组：')
+print(a)
+print('\n')
+
+print('垂直分割：')
+b = np.vsplit(a,2)
+print(b)
+```
+
+	第一个数组：
+	[[ 0  1  2  3]
+	 [ 4  5  6  7]
+	 [ 8  9 10 11]
+	 [12 13 14 15]]
+
+
+	竖直分割：
+	[array([[0, 1, 2, 3],
+		   [4, 5, 6, 7]]), array([[ 8,  9, 10, 11],
+		   [12, 13, 14, 15]])]
+		   
+### 数组元素的添加与删除
+```
+import numpy as np
+
+a = np.arange(6).reshape(2,3)
+
+print('第一个数组：')
+print(a)
+print('\n')
+
+print('第一个数组的形状：')
+print(a.shape)
+print('\n')
+b = np.resize(a,(3,2))
+
+print('第二个数组：')
+print(b)
+print('\n')
+
+print('第二个数组的形状：')
+print(b.shape)
+print('\n')
+
+print("修改第二个数组的大小：")
+b = np.resize(a,(3,3))
+print(b)
+```
+
+	第一个数组：
+	[[0 1 2]
+	 [3 4 5]]
+
+
+	第一个数组的形状：
+	(2, 3)
+
+
+	第二个数组：
+	[[0 1]
+	 [2 3]
+	 [4 5]]
+
+
+	第二个数组的形状：
+	(3, 2)
+
+
+	修改第二个数组的大小：
+	[[0 1 2]
+	 [3 4 5]
+	 [0 1 2]]
+	 
+#### numpy.append
+```
+import numpy as np
+
+a = np.array([[1,2,3],[4,5,6]])
+
+print('第一个数组：')
+print(a)
+print('\n')
+
+print('向数组添加元素：')
+print(np.append(a,[7,8,9]))
+print('\n')
+
+print('沿轴 0 添加元素：')
+print(np.append(a,[[7,8,9]],axis = 0))
+print('\n')
+
+print('沿轴 1 添加元素：')
+print(np.append(a,[[5,5,5],[7,8,9]],axis=1))
+```
+
+	第一个数组：
+	[[1 2 3]
+	 [4 5 6]]
+
+
+	向数组添加元素：
+	[1 2 3 4 5 6 7 8 9]
+
+
+	沿轴 0 添加元素：
+	[[1 2 3]
+	 [4 5 6]
+	 [7 8 9]]
+
+
+	沿轴 1 添加元素：
+	[[1 2 3 5 5 5]
+	 [4 5 6 7 8 9]]
+	 
+#### numpy.insert

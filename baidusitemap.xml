@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.iheng.xyz/2022/04/14/Beautiful-Soup%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2022-04-17</lastmod>
+  </url>
+  <url>
     <loc>http://blog.iheng.xyz/2022/04/10/XPath%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2022-04-11</lastmod>
+    <lastmod>2022-04-14</lastmod>
   </url>
   <url>
     <loc>http://blog.iheng.xyz/2022/03/05/docker%E5%AD%A6%E4%B9%A0/</loc>

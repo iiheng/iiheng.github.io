@@ -197,6 +197,267 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.iheng.xyz/2022/04/14/Beautiful-Soup%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王毅恒">
+      <meta itemprop="description" content="记录个人所学，计算机">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="毅恒-个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/14/Beautiful-Soup%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Beautiful Soup的使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-14 22:29:42" itemprop="dateCreated datePublished" datetime="2022-04-14T22:29:42+08:00">2022-04-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-17 15:40:05" itemprop="dateModified" datetime="2022-04-17T15:40:05+08:00">2022-04-17</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/04/14/Beautiful-Soup%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/04/14/Beautiful-Soup%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>注：来源于崔庆才&lt;&lt;python3爬虫实战开发2&gt;&gt;本人学习并分享，略有补充。</p>
+</blockquote>
+<p>本文主要分为三个部分，首先是将网页内容转为Beautiful Soup解析对象，然后通过该对象进行节点的选择以及文本和属性的提取。</p>
+<h2 id="安装Beautiful-Soup库"><a href="#安装Beautiful-Soup库" class="headerlink" title="安装Beautiful Soup库"></a>安装Beautiful Soup库</h2><p><code>pip install beautifulsoup4</code></p>
+<h2 id="Beautiful-Soup-解析对象"><a href="#Beautiful-Soup-解析对象" class="headerlink" title="Beautiful Soup 解析对象"></a>Beautiful Soup 解析对象</h2><p>Beautiful Soup 在解析时需要以来解析器，比如<code>html.parser</code>、<code>lxml</code>、<code>xml</code>、<code>html5lib</code>，利用他们，可以构建Beatuiful Soup对象，解析成对象以后，后面提取内容使用的方法都是一致的。</p>
+<blockquote>
+<p>下面列出各个解析器的优劣</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>解析器</th>
+<th>使用方法</th>
+<th>优势</th>
+<th>劣势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Python标准库</td>
+<td>BeautifulSoup(markup,’html.parser’)</td>
+<td>Python的内置标准库、执行熟读适中、文档容错能力强、速度快、文档容错能力强</td>
+<td>Pyton2.7.3或3.2.2前的版本中文容错能力差，需要安装c语言库</td>
+</tr>
+<tr>
+<td>LXML HTML解析器</td>
+<td>BeautifulSoup(markup,’lxml’)</td>
+<td>速度快、文档容错能力强</td>
+<td>需要安装c语言库</td>
+</tr>
+<tr>
+<td>LXML XML解析器</td>
+<td>BeautifulSoup(markup,’xml’)</td>
+<td>速度快、唯一支持XML的解析器</td>
+<td>需要安装c语言库</td>
+</tr>
+<tr>
+<td>html5lib</td>
+<td>BeautifulSoup(markup,’html5lib’)</td>
+<td>提供最好的容错性、以浏览器的方式解析文档、生成HTML5格式的文档</td>
+<td>速度慢、不依赖外部扩展</td>
+</tr>
+</tbody></table>
+<p><strong>LXML解析器有解析HTML和XML的功能，并且速度快，容错能力强，所以推荐使用它</strong></p>
+<p>下面我们来尝试一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(&quot;&lt;p&gt;hello&lt;/p&gt;&quot;,&#x27;lxml&#x27;)</span><br><span class="line">print(type(soup))</span><br><span class="line">print(soup)</span><br><span class="line">print(soup.prettify())</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果类型是<code>bs4.BeautifulSoup</code>对象，通过<code>prettify()</code>方法可以将要解析的字符串以标准的缩进格式输出</p>
+<pre><code>&lt;class &#39;bs4.BeautifulSoup&#39;&gt;
+</code></pre>
+<blockquote>
+<p>下面我们都以<code>lxml</code>解析器来进行解析成对象。</p>
+</blockquote>
+<h2 id="选择节点、提取信息-重点"><a href="#选择节点、提取信息-重点" class="headerlink" title="选择节点、提取信息(重点)"></a>选择节点、提取信息(重点)</h2><h3 id="节点选择器"><a href="#节点选择器" class="headerlink" title="节点选择器"></a>节点选择器</h3><h4 id="选择节点"><a href="#选择节点" class="headerlink" title="选择节点"></a>选择节点</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;p class=&quot;title&quot; name=&quot;dromouse&quot;&gt;&lt;b&gt;The Dormouse&#x27;s story&lt;/b&gt;&lt;/p&gt;</span><br><span class="line">		&lt;p class=&quot;story&quot;&gt;Once upon a time there were three little sisters;and htir names were</span><br><span class="line">		&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister&quot; id=&quot;link1&quot;&gt;&lt;!--ELSIE--&gt;&lt;/a&gt;</span><br><span class="line">		&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">		&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">		and htey lived at the bottom of a well &lt;/P&gt;</span><br><span class="line">		&lt;p class=&quot;story&quot;&gt;.....&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">soup = BeautifulSoup(html,&#x27;lxml&#x27;)</span><br><span class="line">print(soup.title)</span><br><span class="line">print(soup.title.string)</span><br><span class="line">print(soup.head)</span><br><span class="line">print(soup.p)</span><br><span class="line">print(type(soup.title))</span><br><span class="line">print(type(soup.title.string))</span><br><span class="line">print(type(soup.head))</span><br><span class="line">print(type(soup.p))</span><br></pre></td></tr></table></figure>
+
+<p>从打印结果中可以看出，有<code>tag</code>和<code>NavigableString</code>两种类型。<code>tag</code>类型对象有一些属性（例如：<code>string</code>属性）等，通过这些属性，我们轻松的获取该节点的内容</p>
+<h4 id="提取信息"><a href="#提取信息" class="headerlink" title="提取信息"></a>提取信息</h4><h5 id="获取名称-name"><a href="#获取名称-name" class="headerlink" title="获取名称(name)"></a>获取名称(<code>name</code>)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.title.name)</span><br><span class="line">print(type(soup.title.name))</span><br></pre></td></tr></table></figure>
+
+<pre><code>title
+&lt;class &#39;str&#39;&gt;
+</code></pre>
+<p>从上面的打印结果可以看出，<code>name</code>属性打印的是节点的名称，倘若我们不知道节点的名称，可以使用这个得到,例如下方这个例子。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(soup.select(&quot;.title&quot;))</span><br><span class="line">print(type(soup.select(&quot;.title&quot;)[0]))</span><br><span class="line">print(soup.select(&quot;.title&quot;)[0].name)</span><br></pre></td></tr></table></figure>
+<h5 id="获取属性-attrs"><a href="#获取属性-attrs" class="headerlink" title="获取属性(attrs)"></a>获取属性(<code>attrs</code>)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(soup.p.attrs)</span><br><span class="line">print(soup.p.attrs[&#x27;name&#x27;])</span><br><span class="line">print(soup.p[&#x27;name&#x27;])</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#123;&#39;class&#39;: [&#39;title&#39;], &#39;name&#39;: &#39;dromouse&#39;&#125;
+dromouse
+dromouse
+</code></pre>
+<p>从上面的例子中，我们通过<code>attrs</code>方法获取了<code>p</code>节点的属性，以字典的形式输出，如果要选择其中的一个属性值，可以通过中括号加属性名就可以了。当然我们也可以直接在节点的后面补上中括号加属性即可，正如第三个打印一样。</p>
+<h5 id="获取内容-string"><a href="#获取内容-string" class="headerlink" title="获取内容(string)"></a>获取内容(<code>string</code>)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.p)</span><br><span class="line">print(soup.p.string)</span><br></pre></td></tr></table></figure>
+
+<pre><code>The Dormouse&#39;s story
+</code></pre>
+<p>我们直接通过<code>string</code>属性获取了第一个p节点下的内容</p>
+<h5 id="嵌套选择-tag"><a href="#嵌套选择-tag" class="headerlink" title="嵌套选择(tag)"></a>嵌套选择(<code>tag</code>)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;&lt;/head&gt;&lt;body&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">soup = BeautifulSoup(html,&#x27;lxml&#x27;)</span><br><span class="line">print(type(soup.head))</span><br><span class="line">print(type(soup.head.title))</span><br><span class="line">print(soup.head)</span><br><span class="line">print(soup.head.title)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;bs4.element.Tag&#39;&gt;
+&lt;class &#39;bs4.element.Tag&#39;&gt;
+&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;title&gt;The Dormouse&#39;s story&lt;/title&gt;&lt;/head&gt;
+&lt;title&gt;The Dormouse&#39;s story&lt;/title&gt;
+</code></pre>
+<p>首先我们先打印了<code>head``title</code>两个节点选择后的类型，发现都是<code>tag</code>类型，我们可以在这基础上可以继续往下选择。</p>
+<h5 id="关联选择"><a href="#关联选择" class="headerlink" title="关联选择"></a>关联选择</h5><p>在有些情况下，我们不能直接或通过属性筛选得到节点，这是后我们就要通过该节点的子节点、父节点、兄弟节点来得到我们想要的节点。</p>
+<h6 id="子节点和子孙节点"><a href="#子节点和子孙节点" class="headerlink" title="子节点和子孙节点"></a>子节点和子孙节点</h6><p>下面这段是下面要选择的内容，我们先选择子节点，然后再选择子孙节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;p class=&quot;story&quot;&gt;</span><br><span class="line">		Once upon a time there were three little sisters;and htir names were</span><br><span class="line">		&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister&quot; id=&quot;link1&quot;&gt;&lt;span&gt;ELSIE&lt;/span&gt;&lt;/a&gt;</span><br><span class="line">		&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt; and</span><br><span class="line">		&lt;a href=&quot;http://example.com/tillie&quot; class=&quot;sister&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;;</span><br><span class="line">		and htey lived at the bottom of a well.</span><br><span class="line">		&lt;/P&gt;</span><br><span class="line">		&lt;p class=&quot;story&quot;&gt;.....&lt;/p&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>子节点</p>
+<ul>
+<li><p><code>contents</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">soup = BeautifulSoup(html,&#x27;lxml&#x27;)</span><br><span class="line">print(soup.p.contents)</span><br></pre></td></tr></table></figure>
+<pre><code>  [&#39;\n\t\tOnce upon a time there were three little sisters;and htir names were\n\t\t&#39;, &lt;a class=&quot;sister&quot; href=&quot;http://example.com/elsie&quot; id=&quot;link1&quot;&gt;&lt;span&gt;ELSIE&lt;/span&gt;&lt;/a&gt;, &#39;\n&#39;, &lt;a class=&quot;sister&quot; href=&quot;http://example.com/lacie&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;, &#39; and\n\t\t&#39;, &lt;a class=&quot;sister&quot; href=&quot;http://example.com/tillie&quot; id=&quot;link3&quot;&gt;Tillie&lt;/a&gt;, &#39;;\n\t\tand htey lived at the bottom of a well.\n\t\t&#39;]
+</code></pre>
+<p>  我们先是选择了<code>p</code>节点，然后再通过<code>contents</code>属性得到了<code>p</code>节点的子节点，并以列表形式返回，当然我们可以继续往下选择，例子如下：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(type(soup.p.contents[1]))</span><br><span class="line">print(soup.p.contents[1].span)</span><br></pre></td></tr></table></figure>
+
+<pre><code>  &lt;class &#39;bs4.element.Tag&#39;&gt;
+  &lt;span&gt;ELSIE&lt;/span&gt;
+</code></pre>
+<p>  上面我们先是选择了列表中的序号为1的元素，然后打印了这个元素的类型，发现是<code>tag</code>类型，然后我们在此基础上继续选择了<code>span</code>节点</p>
+</li>
+<li><p><code>children</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(type(soup.p.children))</span><br><span class="line">for i in enumerate(soup.p.children):</span><br><span class="line">	print(i[0],i[1])</span><br></pre></td></tr></table></figure>
+<p>  我们先是打印了<code>children</code>属性返回的类型，发现是迭代器类型，故我们用for循环输出了相应的内容。</p>
+</li>
+</ul>
+</li>
+<li><p>子孙节点(<code>descendants</code>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(type(soup.p.descendants))</span><br><span class="line">for i in enumerate(soup.p.descendants):</span><br><span class="line">    print(i[0],i[1])</span><br></pre></td></tr></table></figure>
+<p>我们先是打印了<code>descendants</code>属性返回的类型，发现是生成器类型，故我们也用for循环输出。</p>
+</li>
+</ol>
+<h6 id="父节点和祖先节点"><a href="#父节点和祖先节点" class="headerlink" title="父节点和祖先节点"></a>父节点和祖先节点</h6><p>下面这段是下面要选择的内容，我们先选择父节点，然后再选择祖先节点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;title&gt;This is a title&lt;/title&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">Once upon a time there were three little sisters;and their names were</span><br><span class="line">&lt;a&gt;&lt;span&gt;Elsie&lt;/span&gt;&lt;/a&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="0">
+<li>父节点<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(type(soup.a.parent))</span><br><span class="line">print(soup.a.parent))</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>我们先是打印了<code>parent</code>属性的类型，然后直接打印出这父节点本身</p>
+<ol start="2">
+<li>祖先节点<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(type(soup.a.parents))</span><br><span class="line">print(list(enumerate(soup.a.parents)))</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>我们先是打印了<code>parents</code>属性的类型，发现是生成器类型，然后通过<code>enumerate</code>方法转为enumerate类型，最后再转为list类型，并打印出。</p>
+<h6 id="兄弟节点"><a href="#兄弟节点" class="headerlink" title="兄弟节点"></a>兄弟节点</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(&#x27;Next Sibling&#x27;,soup.a.next_sibling)</span><br><span class="line">print(&#x27;prev Sibling&#x27;,soup.a.previous_sibling)</span><br><span class="line">print(&#x27;Next Siblings&#x27;,list(enumerate(soup.a.next_siblings)))</span><br><span class="line">print(&#x27;Next sibling&#x27;,list(enumerate(soup.a.previous_siblings)))</span><br></pre></td></tr></table></figure>
+
+<p>上面两个是一个前面或后面的兄弟节点，后面两个获取了前面或后面的全部兄弟节点</p>
+<h6 id="提取信息-1"><a href="#提取信息-1" class="headerlink" title="提取信息"></a>提取信息</h6><p>获取关联节点中的内容和属性，同样我们也可以使用<code>string</code>、<code>attrs</code>等属性获取，但它们返回的是迭代器或是生成器形式，这时候我们需要将它转为列表形式来进行提取其中的一个节点，然后在获取这一个节点中的内容和属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">html = &quot;&quot;&quot;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;The Dormouse&#x27;s story&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;p class=&quot;story&quot;&gt;</span><br><span class="line">		Once upon a time there were three little sisters;and htir names were</span><br><span class="line">		&lt;a href=&quot;http://example.com/elsie&quot; class=&quot;sister&quot; id=&quot;link1&quot;&gt;&lt;span&gt;ELSIE&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;http://example.com/lacie&quot; class=&quot;sister&quot; id=&quot;link2&quot;&gt;Lacie&lt;/a&gt;</span><br><span class="line">		&lt;/P&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">soup = BeautifulSoup(html,&#x27;lxml&#x27;)</span><br><span class="line">print(&#x27;Next Sibling:&#x27;)</span><br><span class="line">print(type(soup.a.next_sibling))</span><br><span class="line">print(soup.a.next_sibling)</span><br><span class="line">print(soup.a.next_sibling.string)</span><br><span class="line">print(&#x27;Parent:&#x27;)</span><br><span class="line">print(type(soup.a.parents))</span><br><span class="line">print(list(soup.a.parents)[0])</span><br><span class="line">print(list(soup.a.parents)[0].attrs[&#x27;class&#x27;])</span><br></pre></td></tr></table></figure>
+
+<p>对于单个节点，我们可以直接获取其中的内容，但对于迭代器生成器之类的。我们将它转为列表的形式，然后再获取其中的一个来提取其中的信息。</p>
+<h3 id="方法选择器"><a href="#方法选择器" class="headerlink" title="方法选择器"></a>方法选择器</h3><h4 id="find-all"><a href="#find-all" class="headerlink" title="find_all()"></a><code>find_all()</code></h4><p><code>find_all(name,attrs,recursive,text,**kwargs)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">html=&quot;&quot;&quot;</span><br><span class="line">&lt;div class=&quot;panel&quot;&gt;</span><br><span class="line">			&lt;div class=&quot;panel-heading&quot;&gt;</span><br><span class="line">				&lt;h4&gt;Hello&lt;/h4&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">				&lt;ul class=&quot;list&quot; id=&quot;list-1&quot; name=&quot;elements&quot;&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Foo&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Bar&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Jar&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">				&lt;ul class=&quot;list list-small&quot; id=&quot;list-2&quot;&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Foo&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Bar&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="name"><a href="#name" class="headerlink" title="name"></a><code>name</code></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find_all(name=&#x27;ul&#x27;))</span><br><span class="line">print(type(soup.find_all(name=&#x27;ul&#x27;)[0]))</span><br></pre></td></tr></table></figure>
+
+<p>我们先是打印了<code>ul</code>节点，返回的是一个列表形式，里面有两个<code>ul</code>，然后我们打印其中一个的类型，发现是<code>tag</code>类型，那么还是可以继续选择下去，正如下方这个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find_all(name=&#x27;ul&#x27;)[0].li)</span><br></pre></td></tr></table></figure>
+
+<h5 id="attrs"><a href="#attrs" class="headerlink" title="attrs"></a><code>attrs</code></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find_all(attrs=&#123;&#x27;class&#x27;:&#x27;list-small&#x27;,&#x27;id&#x27;:&#x27;list-2&#x27;&#125;))</span><br><span class="line">print(soup.find_all(attrs=&#123;&#x27;name&#x27;:&#x27;elements&#x27;&#125;))</span><br></pre></td></tr></table></figure>
+<p>我们往<code>attrs</code>参数传入了一个字典，字典是由属性和属性值组成，可以传入多对的键值对。</p>
+<blockquote>
+<p>当然对于常用的属性，我们可以不用写<code>attrs</code>直接进行筛选，例如下面这个例子</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find_all(id=&#x27;list-1&#x27;))</span><br><span class="line">print(soup.find_all(class_=&#x27;list-small&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>因为<code>class</code>是python的关键词，所以我们这里需要加下划线<code>_</code>来进行区分。</p>
+<h5 id="text"><a href="#text" class="headerlink" title="text"></a><code>text</code></h5><p><code>text</code>参数可以用来匹配节点的文本，其传入形式可以是字符串，也可以是正则表达式对象，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">html=&quot;&quot;&quot;</span><br><span class="line">&lt;div class=&quot;panel&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">        &lt;a&gt;Hello, this is a link&lt;/a&gt;</span><br><span class="line">        &lt;a&gt;Hello, this is a link,too&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">soup = BeautifulSoup(html,&#x27;lxml&#x27;)</span><br><span class="line">print(soup.find_all(text=re.compile((&#x27;link&#x27;))))</span><br></pre></td></tr></table></figure>
+
+<p>上面我们选择了包含于正则表达式相匹配的节点文本组成的所有列表</p>
+<h4 id="find"><a href="#find" class="headerlink" title="find()"></a><code>find()</code></h4><p>该方法与<code>find_all()</code>方法一致，不过返回的是单个元素，或是列表中的一个。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">html=&quot;&quot;&quot;</span><br><span class="line">&lt;div class=&quot;panel&quot;&gt;</span><br><span class="line">			&lt;div class=&quot;panel-heading&quot;&gt;</span><br><span class="line">				&lt;h4&gt;Hello&lt;/h4&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">				&lt;ul class=&quot;list&quot; id=&quot;list-1&quot; name=&quot;elements&quot;&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Foo&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Bar&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Jar&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">				&lt;ul class=&quot;list list-small&quot; id=&quot;list-2&quot;&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Foo&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Bar&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find(name=&#x27;ul&#x27;))</span><br><span class="line">print(type(soup.find(name=&#x27;ul&#x27;)))</span><br><span class="line">print(soup.find(class_=&#x27;list&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>上面我们先是选择了<code>ul</code>节点，如果使用<code>find_all()</code>，那么返回的是一个列表，但<code>find()</code>方法返回的是只有一个。并用我们打印了类型，发现是<code>tag</code>类型。</p>
+<blockquote>
+<p><code>find_parents</code>和<code>find_parent</code>:牵着返回所有祖先节点，后者返回直接父节点。<br><code>find_next_siblings</code>和<code>find_next_sibling</code>:前者返回后面的所有兄弟节点。后者返回后面的第一个兄弟节点<br><code>find_previous_siblings</code>和<code>find_previous_sibling</code>:前者返回前面的所有兄弟节点，后者返回前面第一个兄弟节点<br><code>find_all_next</code>和<code>find_next</code>:前者返回节点后面所有符合条件的节点，后者返回后面第一个符合条件的节点。<br><code>find_all_previous</code>和<code>find_previous</code>:前者返回节点前面所有所有符合条件的节点，后者返回前面第一个符合条件的节点。</p>
+<blockquote>
+<p>下面这里例子是使用了条件的<code>find_all_next</code><br>    <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(soup.find(name=&#x27;ul&#x27;).find_all_next(class_=&#x27;list-small&#x27;))</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+<h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><p><code>select()</code>方法在<code>tag</code>类型下进行选择，返回的也是<code>tag</code>类型，然后再进行嵌套选择。往<code>select()</code>方法中传入CSS选择器即可，选择器我们可以参考<a target="_blank" rel="noopener" href="https://www.runoob.com/cssref/css-selectors.html">菜鸟教程</a>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">html=&quot;&quot;&quot;</span><br><span class="line">&lt;div class=&quot;panel&quot;&gt;</span><br><span class="line">			&lt;div class=&quot;panel-heading&quot;&gt;</span><br><span class="line">				&lt;h4&gt;Hello&lt;/h4&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">				&lt;ul class=&quot;list&quot; id=&quot;list-1&quot; name=&quot;elements&quot;&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Foo&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Bar&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Jar&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">				&lt;ul class=&quot;list list-small&quot; id=&quot;list-2&quot;&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Foo&lt;/li&gt;</span><br><span class="line">					&lt;li class=&quot;element&quot;&gt;Bar&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="节点选择"><a href="#节点选择" class="headerlink" title="节点选择"></a>节点选择</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.select(&#x27;.list-small&#x27;))</span><br><span class="line">print(type(soup.select(&#x27;.list-small&#x27;)[0]))</span><br></pre></td></tr></table></figure>
+<p>上面我们选择了<code>class</code>为list-small的节点，返回的是一个列表，我们选择了第一个，然后打印得到是<code>tag</code>类型，下面我们尝试着嵌套选择</p>
+<h4 id="嵌套选择"><a href="#嵌套选择" class="headerlink" title="嵌套选择"></a>嵌套选择</h4><p>print(soup.select(‘.list-small’)[0].find_all_next())</p>
+<p>我们在节点选择的基础上选择了它下面的那些节点，返回了一个列表，我们可以直接中括号加序号进行选择。</p>
+<h4 id="获取属性"><a href="#获取属性" class="headerlink" title="获取属性"></a>获取属性</h4><p>因为<code>select()</code>方法返回的对象类型也是<code>tag</code>类型，所以我们可以使用<code>attrs</code>或者直接使用中括号加属性直接进行选择。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(soup.select(&#x27;.list-small&#x27;)[0].attrs)</span><br><span class="line">print(soup.select(&#x27;.list-small&#x27;)[0][&#x27;id&#x27;])</span><br></pre></td></tr></table></figure>
+
+<p>上面我们打印的<code>attrs</code>是字典类型，可以使用字典的选择就可以选择节点的属性值了。</p>
+<h4 id="获取文本"><a href="#获取文本" class="headerlink" title="获取文本"></a>获取文本</h4><p>因为是<code>tag</code>类型，所以我们可以使用<code>string</code>直接选择，当然也可以使用<code>get_text()</code>方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i in soup.select(&#x27;li&#x27;):</span><br><span class="line">    print(&#x27;get_text:&#x27;,i.get_text())</span><br><span class="line">    print(&#x27;string:&#x27;,i.string)</span><br></pre></td></tr></table></figure>
+
+<p>两者选择效果一致，都可以获取到节点的文本值</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里，我们再从解析成Beautiful Soup对象，然后通过三个不同的选择方法选择了节点并且获取其中的内容和属性，当然最重要的还是他们返回的节点类型都是<code>tag</code>，所以可以连着使用这三种，不必太分开。</p>
+<ol start="0">
+<li>推荐使用LXML解析库，必要时使用html.parser</li>
+<li>节点选择器筛选功能弱，但是速度快</li>
+<li>建议使用<code>find()</code>、<code>find_all()</code>方法查询匹配的单个结果或者多个结果</li>
+<li>如果对CSS选择器熟悉，则可以使用select选择器</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://blog.iheng.xyz/2022/04/10/XPath%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,7 +489,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-11 16:06:07" itemprop="dateModified" datetime="2022-04-11T16:06:07+08:00">2022-04-11</time>
+                <time title="修改时间：2022-04-14 22:36:37" itemprop="dateModified" datetime="2022-04-14T22:36:37+08:00">2022-04-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1103,7 +1364,7 @@ b2f6e490e3f0   scrapycompositedemo_default   bridge    local
 <ol>
 <li><h2 id="语句：-8"><a href="#语句：-8" class="headerlink" title="语句："></a>语句：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一个链接：[毅恒-个人博客](https://blog.iheng.xyz &quot;回到主页&quot;)</span><br><span class="line">&lt;http://blog.iheng.xyz&gt;</span><br><span class="line">&lt;fake@example.com&gt;</span><br></pre></td></tr></table></figure></li>
 <li><h2 id="效果：-8"><a href="#效果：-8" class="headerlink" title="效果："></a>效果：</h2><blockquote>
-<p>这是一个链接：<a href="https://blog.iheng.xyz/" title="回到主页">毅恒-个人博客</a><br><a href="http://blog.iheng.xyz/">http://blog.iheng.xyz</a><br><a href="mailto:&#102;&#x61;&#107;&#x65;&#64;&#101;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;">&#102;&#x61;&#107;&#x65;&#64;&#101;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;</a></p>
+<p>这是一个链接：<a href="https://blog.iheng.xyz/" title="回到主页">毅恒-个人博客</a><br><a href="http://blog.iheng.xyz/">http://blog.iheng.xyz</a><br><a href="mailto:&#102;&#x61;&#107;&#x65;&#x40;&#x65;&#x78;&#x61;&#x6d;&#112;&#108;&#101;&#x2e;&#99;&#x6f;&#109;">&#102;&#x61;&#107;&#x65;&#x40;&#x65;&#x78;&#x61;&#x6d;&#112;&#108;&#101;&#x2e;&#99;&#x6f;&#109;</a></p>
 <blockquote>
 <p>还有更多效果请前往官方文档查看：<a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/links.html" title="https://markdown.com.cn/basic-syntax/links.html">MarkDown官方文档</a></p>
 </blockquote>
@@ -1230,7 +1491,7 @@ b2f6e490e3f0   scrapycompositedemo_default   bridge    local
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1243,7 +1504,7 @@ b2f6e490e3f0   scrapycompositedemo_default   bridge    local
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,3 +1,4 @@
+https://wangyiheng.cn/2022/11/10/mian-fei-pa-chong-ip-dai-li-chi-ruan-jian/
 https://wangyiheng.cn/friends/index.html
 https://wangyiheng.cn/2022/11/06/huan-jing-xiang-yuan-yi-jie-jue-la-qu-jing-xiang-su-du-man-de-wen-ti/
 https://wangyiheng.cn/2022/11/03/wan-ke-yun-5.9-qian-zhao-gu-jian-wan-fa-docker-qing-long-mian-ban/
@@ -11,4 +12,10 @@ https://wangyiheng.cn/tags/%E7%8E%A9%E5%AE%A2%E4%BA%91/
 https://wangyiheng.cn/tags/Linux%E5%B0%8F%E4%B8%BB%E6%9C%BA/
 https://wangyiheng.cn/tags/docker/
 https://wangyiheng.cn/tags/%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF/
+https://wangyiheng.cn/tags/json/
+https://wangyiheng.cn/tags/%E7%88%AC%E8%99%AB/
+https://wangyiheng.cn/tags/python/
+https://wangyiheng.cn/tags/redis/
+https://wangyiheng.cn/tags/qt/
 https://wangyiheng.cn/categories/%E5%B0%8F%E7%8E%A9%E6%84%8F/
+https://wangyiheng.cn/categories/%E7%88%AC%E8%99%AB/
